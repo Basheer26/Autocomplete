@@ -1,17 +1,67 @@
-var url = "/autocomplete";
-var headers = {
-   "Content-Type": "application/json",
-};
-var data = {
-   name: "Wade Wilson",
-   occupation: "Murderer",
-   age: "30",
-};
-fetch(url, { method: "POST", headers: headers, body: data })
-   .then((res) => {
-      return res.json();
+const search = document.querySelector(".search");
+const form = document.querySelector(".submit");
+const suggestion = document.querySelector("#suggestions");
+
+search.addEventListener("input", () => {
+   fetch("/autocomplete", {
+      method: "POST",
+      // parsedBody.search takes search from { search: search.value } and returns search.value
+      body: JSON.stringify({ search: search.value }),
    })
-   .then((json) => {
-      console.log(json);
-      // Do something with the returned data.
-   });
+      .then((response) => {
+         return response.json();
+      })
+      .then((data) => {
+         while (suggestions.firstChild) {
+            suggestions.removeChild(suggestions.firstChild);
+         }
+         data.forEach((element) => {
+            let newOption = document.createElement("option");
+            newOption.value = element.name;
+            newOption.textContent = element.name;
+
+            suggestions.appendChild(newOption);
+         });
+      })
+      // .then((json) => {
+      //    console.log(json.flowerlist[0].name);
+
+      //    search.textContent = json.flowerlist.name;
+      //    console.log(search);
+      // })
+      .catch((error) => {
+         console.error(error);
+      });
+   //  const dataSug = searchFlowerData(search.value);
+});
+
+// form.addEventListener("click", () => {
+//   event.preventDefault();
+
+//   price.textContent = searchFlowerData(search.value).price;
+//   instructions.textContent = searchFlowerData(search.value).instructions;
+// });
+
+// function searchFlowerData() {
+//    let data = [
+//       {
+//          category: "Shrubs",
+//          price: 15.99,
+//          instructions:
+//             "Large double. Good grower, heavy bloomer. Early to mid-season, acid loving plants. Plant in moist well drained soil with pH of 4.0-5.5.",
+//          photo: "california_snow.jpg",
+//          name: "Azalea",
+//          productId: 1,
+//       },
+//       {
+//          category: "Shrubs",
+//          price: 33.99,
+//          instructions:
+//             "Beautiful large royal purple flowers adorn attractive satiny green leaves that turn orange\\/red in cold weather. Grows to up to 18 feet, or prune annually to shorten.",
+//          photo: "princess_flower.jpg",
+//          name: "Tibouchina Semidecandra",
+//          productId: 2,
+//       },
+//    ];
+//    return data;
+// }

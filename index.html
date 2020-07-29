@@ -19,22 +19,33 @@
   <body>
     <!-- Search form -->
     <form
-      class="form-inline d-flex justify-content-center md-form form-sm active-cyan active-cyan-2 mt-2"
+    class="form-inline d-flex justify-content-center md-form form-sm active-cyan active-cyan-2 mt-2"
     >
-      <!--don't forget to add fontawosome-->
-      <i class="fas fa-search" aria-hidden="true"></i>
-      <input
-        class="form-control form-control-sm ml-3 w-75"
-        type="text"
-        placeholder="Search"
-        aria-label="Search"
-      />
-    </form>
-
+    <!--don't forget to add fontawosome-->
+    
+    <i class="fas fa-search" aria-hidden="true"></i>
+    <input
+    class="form-control form-control-sm ml-3 w-75 search"
+    type="text"
+    placeholder="Search"
+    aria-label="Search"
+    list="suggestions"
+    />
+    <datalist id="suggestions"></datalist>
+    <button class="submit">Search</button>
+  </form>
+  <div class="container">
+    <div class=" flowerData">
+          
+          <div  class="price" ></div><br />
+      <div class="instructions"></div>
+      </div>
+      
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
       crossorigin="anonymous"
     ></script>
+    <script src="/public/app.js"></script>
   </body>
 </html>
