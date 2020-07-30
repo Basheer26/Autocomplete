@@ -22,7 +22,7 @@ searchLetter.addEventListener("keyup", () => {
          data.forEach((element) => {
             let newOption = document.createElement("option");
             newOption.value = element.location;
-            newOption.textContent = element.location;
+            // newOption.textContent = element.location;
 
             suggestions.appendChild(newOption);
          });
@@ -89,7 +89,7 @@ function getCountryCovidData(country, getdata) {
         <div class="card td">
           <i class="fa fa-fa-th-list"></i>
             <h5>Total death</h5>
-            <span id="cases">${countryStats[0].total_death}</span>
+            <span id="cases">${countryStats[0].total_deaths}</span>
         </div>
         <!-- 4- continent -->
         <div class="card c">
