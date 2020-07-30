@@ -5,6 +5,7 @@ const types = {
   html: "text/html",
   css: "text/css",
   js: "application/javascript",
+  png: "image/png",
 };
 
 function publicHandler(request, response) {
