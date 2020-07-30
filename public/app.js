@@ -17,8 +17,8 @@ search.addEventListener("input", () => {
          }
          data.forEach((element) => {
             let newOption = document.createElement("option");
-            newOption.value = element.name;
-            newOption.textContent = element.name;
+            newOption.value = element.location;
+            newOption.textContent = element.location;
 
             suggestions.appendChild(newOption);
          });

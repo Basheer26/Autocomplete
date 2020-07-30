@@ -1,5 +1,5 @@
 // for reading the files
-const dataBase = require("../flowers.json");
+const dataBase = require("../covid-data.json");
 // The require method takes the json as a string so we need to parse it
 const parsedDataBase = dataBase;
 // filtering
@@ -10,9 +10,9 @@ function filterHandler(request, response) {
    });
    request.on("end", () => {
       const parsedBody = JSON.parse(body);
-      const resultsArray = parsedDataBase.flowerlist.filter((flower) => {
+      const resultsArray = parsedDataBase.covidData.filter((country) => {
          // the filter function go over the flowers names. For each flower, if the flower name matches the user input, it returns it to the resultsArray and save it.
-         if (flower.name.toLowerCase().startsWith(parsedBody.search))
+         if (country.location.toLowerCase().startsWith(parsedBody.search))
             return true;
          else return false;
       });
