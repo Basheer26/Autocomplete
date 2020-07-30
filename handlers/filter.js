@@ -12,7 +12,11 @@ function filterHandler(request, response) {
       const parsedBody = JSON.parse(body);
       const resultsArray = parsedDataBase.covidData.filter((country) => {
          // the filter function go over the flowers names. For each flower, if the flower name matches the user input, it returns it to the resultsArray and save it.
-         if (country.location.toLowerCase().startsWith(parsedBody.search))
+         if (
+            country.location
+               .toLowerCase()
+               .startsWith(parsedBody.search.toLowerCase())
+         )
             return true;
          else return false;
       });
