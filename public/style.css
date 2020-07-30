@@ -1,3 +1,5 @@
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
 .active-pink-2 input[type="text"]:focus:not([readonly]) {
    border-bottom: 1px solid #f48fb1;
    box-shadow: 0 1px 0 0 #f48fb1;
@@ -14,4 +16,72 @@
 .active-cyan .fa,
 .active-cyan-2 .fa {
    color: #4dd0e1;
+}
+body {
+   height: 100vh;
+   font-family: "Poppins", sans-serif;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+.container {
+   z-index: 1;
+   width: 70%;
+   margin: 0 auto;
+   border-radius: 24px;
+   background: #f6f560;
+   padding: 2%;
+   box-shadow: 0px 10px 6 px -8px rgba(0, 0, 0, 0.75);
+}
+.container h2 {
+   margin: 0 0 30px;
+   text-align: center;
+}
+img#flag {
+   height: 20px;
+   width: 20px;
+}
+.card {
+   width: 84%;
+   background: #ccc;
+   padding: 8%;
+   margin-bottom: 20px;
+   border-radius: 6px;
+   color: #fff;
+}
+.card.tc {
+   background: #ff0053;
+}
+.card.nc {
+   background: #ffa501;
+}
+.card.td {
+   background: #ff3434;
+}
+.card.c {
+   background: #d83f3f;
+}
+.card.p {
+   background: #32b336;
+}
+.card.dp {
+   background: #41a7ff;
+}
+.card span {
+   font-size: 3rem;
+   font-weight: 700;
+   letter-spacing: 4px;
+}
+.card i {
+   font-size: 3rem;
+}
+@media screen and (max-width: 768px) {
+   .board {
+      column-count: 2;
+   }
+}
+@media screen and (max-width: 500px) {
+   .board {
+      column-count: 1;
+   }
 }
