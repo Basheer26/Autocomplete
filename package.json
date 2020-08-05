@@ -20,5 +20,8 @@
    "homepage": "https://github.com/WebAhead6/Autocomplete#readme",
    "devDependencies": {
       "nodemon": "^2.0.4"
+   },
+   "dependencies": {
+      "axios": "^0.19.2"
    }
 }
