@@ -7,61 +7,58 @@ const covidSearch = document.getElementById("covidSearch");
 const search = covidSearch.querySelector("#search");
 var dataFetch = {};
 searchLetter.addEventListener("keyup", () => {
-  fetch("/audocumenttocomplete", {
-    method: "POST",
-    // parsedBody.search takes search from { search: search.value } and returns search.value
-    body: JSON.stringify({ search: searchLetter.value }),
-  })
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      while (suggestions.firstChild) {
-        suggestions.removeChild(suggestions.firstChild);
-      }
-      data.forEach((element) => {
-        let newOption = document.createElement("option");
-        newOption.value = element.location;
-        // newOption.textContent = element.location;
+   fetch("/autocomplete", {
+      method: "POST",
+      // parsedBody.search takes search from { search: search.value } and returns search.value
+      body: JSON.stringify({ search: searchLetter.value }),
+   })
+      .then((response) => {
+         return response.json();
+      })
+      .then((data) => {
+         while (suggestions.firstChild) {
+            suggestions.removeChild(suggestions.firstChild);
+         }
+         data.forEach((element) => {
+            let newOption = document.createElement("option");
+            newOption.value = element.location;
+            // newOption.textContent = element.location;
 
-        suggestions.appendChild(newOption);
+            suggestions.appendChild(newOption);
+         });
+         dataFetch = data;
+      })
+
+      .catch((error) => {
+         console.error(error);
       });
-      dataFetch = data;
-    })
-
-    .catch((error) => {
-      console.error(error);
-    });
 });
 //getCountryCovidData
 covidSearch.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const country = search.value;
-  console.log("country search value: ", country);
-  covidSearch.reset();
-  if (country === "") {
-    // make an html element instead of log
-    console.log("please enter a country");
-  } else {
-    console.log(country);
-    getCountryCovidData(country, dataFetch);
-  }
+   e.preventDefault();
+   const country = search.value;
+   console.log("country search value: ", country);
+   covidSearch.reset();
+   if (country === "") {
+      // make an html element instead of log
+      console.log("please enter a country");
+   } else {
+      console.log(country);
+      getCountryCovidData(country, dataFetch);
+   }
 });
 
 function getCountryCovidData(country, getdata) {
-  const searchResult = document.querySelector(".search_results");
-  const countryName = country;
-  const countryStats = getdata.filter((countryData) => {
-    if (countryName === countryData.location) {
-      return true;
-    } else {
-      return false;
-    }
-  });
+   const searchResult = document.querySelector(".search_results");
+   const countryName = country;
+   const countryStats = getdata.filter(
+      (countryData) =>
+         countryData.location.toLowerCase() === countryName.toLowerCase()
+   );
 
-  searchResult.innerHTML = `
-    <div classe="container">
-      <h2>COVID-19 cases in <span id="country">${countryName} at 29/07/2020</span><img src="" id="flag"></h2>
+   searchResult.innerHTML = `
+<div classe="container">
+<h2>COVID-19 cases in <span id="country">${countryName} at 29/07/2020</span><img src="" id="flag"></h2>
       <div class="board">
         <!-- 1- total cases -->
         <div class="card tc">
