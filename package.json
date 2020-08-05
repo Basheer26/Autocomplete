@@ -1,23 +1,24 @@
 {
-   "name": "autocomplete",
-   "version": "1.0.0",
-   "description": "Node.js project handling json data set with autocomplete",
-   "main": "app.js",
-   "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "node server.js"
-   },
-   "repository": {
-      "type": "git",
-      "url": "git+https://github.com/WebAhead6/Autocomplete.git"
-   },
-   "author": "",
-   "license": "ISC",
-   "bugs": {
-      "url": "https://github.com/WebAhead6/Autocomplete/issues"
-   },
-   "homepage": "https://github.com/WebAhead6/Autocomplete#readme",
-   "devDependencies": {
-      "nodemon": "^2.0.4"
-   }
+  "name": "autocomplete",
+  "version": "1.0.0",
+  "description": "Node.js project handling json data set with autocomplete",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WebAhead6/Autocomplete.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WebAhead6/Autocomplete/issues"
+  },
+  "homepage": "https://github.com/WebAhead6/Autocomplete#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
 }
