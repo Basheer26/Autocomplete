@@ -20,6 +20,8 @@ searchLetter.addEventListener("keyup", () => {
          while (suggestions.firstChild) {
             suggestions.removeChild(suggestions.firstChild);
          }
+         if (data.length === 1 && searchLetter.value === data[0].location)
+            return;
          data.forEach((element) => {
             let newOption = document.createElement("option");
             newOption.value = element.location;
@@ -65,8 +67,7 @@ covidSearch.addEventListener("submit", (e) => {
 
 function printCountryData(country, getdata) {
    console.log("print data");
-   const countryName = country;
-   const totalCards = 6;
+   //
    const cardsInfo = {
       cards: {
          1: {
@@ -75,44 +76,53 @@ function printCountryData(country, getdata) {
          },
          2: {
             title: "Critical cases",
-            number: "getdata[0].cases",
+            number: `${getdata[0].critical}`,
          },
          3: {
             title: "Total death",
-            number: "getdata[0].cases",
+            number: `${getdata[0].deaths}`,
          },
          4: {
             title: "Active cases per one million",
-            number: "getdata[0].cases",
+            number: `${getdata[0].activePerOneMillion}`,
          },
          5: {
             title: "Population",
-            number: "getdata[0].cases",
+            number: `${getdata[0].population}`,
          },
          6: {
             title: "Recovered",
-            number: "getdata[0].cases",
+            number: `${getdata[0].recovered}`,
          },
       },
    };
+   const countryName = country;
+   const totalCards = 6;
    // building card in search result div
-   const wrapper = document.createElement("DIV");
-   wrapper.className = "wrapper";
-   const searchResult = document.getElementById("resultttt");
-   // <h2>COVID-19 cases in <span id="country">${countryName} updated</span><img src="" id="flag"></h2>
-   // const title = document.createElement("h2");
-   // flag
-   searchResult.appendChild(wrapper);
-   for (var i = 1; i <= 1; i++) {
+   const wrapper = document.getElementById("wrap");
+   const wrapHead = document.getElementById("wrapHead");
+   const BoxTitle = document.createElement("h2");
+   BoxTitle.textContent = `COVID-19 cases in ${countryName}`;
+   const flag = document.createElement("img");
+   flag.src = getdata[0].countryInfo.flag;
+   flag.setAttribute("id", "flag");
+   wrapHead.appendChild(BoxTitle);
+   wrapHead.appendChild(flag);
+
+   for (var i = 1; i <= totalCards; i++) {
       var card = document.createElement("div");
-      card.setAttribute("class", `card card${i}`);
+      card.setAttribute("class", `cardBase card${i}`);
       var cardTitle = document.createElement("h5");
       cardTitle.textContent = cardsInfo.cards[i].title;
       var numbers = document.createElement("span");
-      numbers.textContent = cardsInfo.cards[i].number;
+      numbers.textContent = numberWithCommas(cardsInfo.cards[i].number);
       wrapper.appendChild(card);
       card.appendChild(cardTitle);
       card.appendChild(numbers);
+   }
+
+   function numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
    }
 
    // searchResult.innerHTML = `
